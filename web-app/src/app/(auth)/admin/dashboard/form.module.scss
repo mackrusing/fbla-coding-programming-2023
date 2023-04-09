@@ -1,0 +1,77 @@
+$color-fg: #120d11; // black
+$color-fg2: rgba($color-fg, 0.25); // dark grey
+$color-bg: #f0eaf0; // white
+$color-bg2: #e9e2e9; // light grey
+$color-accent1: #ad91c5; // purple
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+  // justify-content: center;
+
+  input[type=text], input[type=number] {
+    background: $color-bg;
+    padding: 0;
+    padding: 5px 10px;
+    // border: 2px solid $color-fg2;
+    border: none;
+    border-radius: 5px;
+  }
+
+  input[type=submit] {
+    background: $color-accent1;
+    border-radius: 5px;
+    border: none;
+    // width: 200px;
+    padding: 5px 10px;
+    color: $color-bg;
+  }
+
+  input[type=submit]:disabled {
+    border-radius: 5px;
+    background: rgba($color-accent1, 0.5);
+  }
+}
+
+.radioGroup {
+  padding: 5px 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 0 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: $color-bg;
+  border-radius: 5px;
+
+  
+  .btns {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 14px;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  flex-wrap: wrap;
+
+  input {
+    flex-basis: 12ch;
+    flex-shrink: 1;
+    flex-grow: 1;
+    min-width: 0px;
+  }
+}

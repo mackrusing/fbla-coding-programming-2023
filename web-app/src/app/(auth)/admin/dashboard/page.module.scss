@@ -1,0 +1,30 @@
+$color-fg: #120d11; // black
+$color-fg2: rgba($color-fg, 0.25); // dark grey
+$color-fg3: rgba($color-fg, 0.75); // dark grey
+$color-bg2: #e9e2e9; // light grey
+
+.main {
+
+  h2 {
+    margin-bottom: 10px;
+    font-size: 32px;
+  }
+
+
+  .formContainer {
+    background: $color-bg2;
+    padding: 10px;
+    border-radius: 10px;
+
+    margin-bottom: 32px;
+
+    h2 {
+      // margin-top: 5px;
+      margin-bottom: 10px;
+      font-size: 32px;
+      // font-style: italic;
+      color: $color-fg3;
+      text-align: center;
+    }
+  }
+}

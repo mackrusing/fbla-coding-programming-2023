@@ -1,0 +1,26 @@
+$color-bg2: #e9e2e9; // light grey
+
+.nav {
+  background: $color-bg2;
+  padding: 18px;
+  margin-bottom: 40px;
+  font-weight: 600;
+  text-align: center;
+  height: 80px;
+  display: flex;
+  // align-content: center;
+  align-items: center;
+  justify-content: center;
+
+  // full-bleed
+  width: 100%;
+  grid-column: 1 / 4;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style-type: none;
+    }
+  }
+}
