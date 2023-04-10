@@ -13,20 +13,18 @@ pub struct State {
 }
 
 impl State {
+    //
     // helpers
+    //
+
     fn next_student_id(&mut self) -> u32 {
         self.last_student_id += 1;
         self.last_student_id
     }
-    fn next_event_id(&mut self) -> u32 {
-        self.last_event_id += 1;
-        self.last_event_id
-    }
-    // fn get_mut_student_from_students(&mut self, id: u32) -> Option<&mut Student> {
-    //     self.students.iter_mut().find(|student| student.id == id)
-    // }
-    // fn get_student_from_students(&self, id: u32) -> Option<&Student> {
-    //     self.students.iter().find(|student| student.id == id)
+    
+    // fn next_event_id(&mut self) -> u32 {
+    //     self.last_event_id += 1;
+    //     self.last_event_id
     // }
 
     //
@@ -36,7 +34,10 @@ impl State {
     //   operations that can fail return an option
     //
 
-    // GET /students
+    //
+    // students
+    //
+
     pub fn get_students(&self, first_name: Option<&str>, last_name: Option<&str>, grade_lvl: Option<GradeLvl>) -> Vec<Student> {
         self.students.iter().filter_map(|student| {
             if let Some(first) = first_name { if student.first_name != first { return None; } }
@@ -46,8 +47,7 @@ impl State {
         }).collect()
     }
 
-    // POST /students
-    pub fn post_student(&mut self, first_name: &str, last_name: &str, grade_lvl: GradeLvl) -> Student {
+    pub fn post_students(&mut self, first_name: &str, last_name: &str, grade_lvl: GradeLvl) -> Student {
         let new_student = Student {
             id: self.next_student_id(),
             first_name: String::from(first_name),
@@ -62,7 +62,11 @@ impl State {
         new_student
     }
 
-    // GET /students/<id>
+
+    //
+    // student
+    //
+
     pub fn get_student(&self, id: u32) -> Option<Student> {
         self.students.iter().find_map(|student| {
             if student.id == id { Some(student.clone()) }
@@ -70,7 +74,6 @@ impl State {
         })
     }
 
-    // PUT /students/<id>
     pub fn put_student(&mut self, id: u32, first_name: &str, last_name: &str, grade_lvl: GradeLvl) -> Student {
         let new_student = Student {
             id: id,
@@ -94,7 +97,6 @@ impl State {
         new_student
     }
 
-    // PATCH /students/<id>
     pub fn patch_student(&mut self, id: u32, first_name: Option<&str>, last_name: Option<&str>, grade_lvl: Option<GradeLvl>) -> Option<Student> {
         
         let mut student = self.students.iter_mut().find(|student| student.id == id)?;
@@ -103,14 +105,12 @@ impl State {
         if let Some(last) = last_name { student.last_name = String::from(last); }
         if let Some(grade) = grade_lvl { student.grade_lvl = grade; }
 
-        let mut result = student.clone();
+        let result = student.clone();
         self.write_json();
         Some(result)
     }
 
-    // DELETE /students/<id>
     pub fn delete_student(&mut self, id: u32) -> Option<()> {
-        // let mut found = false;
         let i = self.students.iter().position(|student| student.id == id)?;
 
         self.students.remove(i);
@@ -118,36 +118,43 @@ impl State {
         Some(())
     }
 
-    // GET /students/<id>/completed_events
+    //
+    // student completed events
+    //
+
     pub fn get_student_completed_events(&self, id: u32) -> Option<Vec<Event>> {
         let event_ids = &self.students.iter().find(|student| student.id == id)?.completed_events;
-        // let result: Vec<Event> = self.events.iter().filter_map(|event| {
-        //     for id in event_ids {
-        //         if event.id == *id {
-        //             return Some(event.clone());
-        //         }
-        //     }
-        //     None
-        // }).collect();
-        let matches: Vec<&Event> = &self.events.iter().filter(|event| {
-            for id in event_ids {
-                if event.id == id {
-                    return true;
-                }
+        Some(self.events.iter().filter_map(|event| {
+            if event_ids.contains(&event.id) {
+                Some(event.clone())
+            } else {
+                None
             }
-            false
-        }).collect();
+        }).collect())
+    }
 
-        let result: Vec<Event> = matches.iter().map(|event| { event.clone(); }).collect();
+    pub fn post_student_completed_events(&mut self, id: u32, event_id: u32) -> Option<Event> {
+        let selected_event = self.events.iter().find(|event| event.id == event_id)?;
+        let selected_student = self.students.iter_mut().find(|student| student.id == id)?;
+        if selected_student.completed_events.contains(&event_id) { return None }
+        selected_student.completed_events.push(event_id);
+        self.write_json();
+        Some(selected_event.clone())
+    }
 
-        Some(result)
+    pub fn patch_student_completed_events(&mut self, id: u32, event_id: u32) -> Option<()> {
+        let selected_student = self.students.iter_mut().find(|student| student.id == id)?;
+        let i = selected_student.completed_events.iter().position(|existing_id| existing_id == &event_id)?;
+        selected_student.completed_events.remove(i);
+        self.write_json();
+        Some(())
+    }
 
-        // self.students.iter().filter_map(|student| {
-        //     if let Some(first) = first_name { if student.first_name != first { return None; } }
-        //     if let Some(last) = last_name { if student.last_name != last { return None; } }
-        //     if let Some(grade) = &grade_lvl { if &student.grade_lvl != grade { return None; } }
-        //     Some(student.clone())
-        // }).collect()
+    pub fn delete_student_completed_events(&mut self, id: u32) -> Option<()> {
+        let mut selected_student = self.students.iter_mut().find(|student| student.id == id)?;
+        selected_student.completed_events = Vec::new();
+        self.write_json();
+        Some(())
     }
 
     //
