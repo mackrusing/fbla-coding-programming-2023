@@ -1,5 +1,5 @@
 use crate::types::{Student, Event, GradeLvl};
-
+use serde_json::json;
 use std::fs;
 
 #[derive(Debug)]
@@ -21,7 +21,7 @@ impl State {
         self.last_student_id += 1;
         self.last_student_id
     }
-    
+
     // fn next_event_id(&mut self) -> u32 {
     //     self.last_event_id += 1;
     //     self.last_event_id
@@ -213,5 +213,132 @@ impl State {
         state.last_event_id = highest_event_id;
 
         state
+    }
+}
+
+impl State {
+    //
+    // testing utility functions
+    //
+
+    pub fn util_reset_test_data(&mut self) {
+        // students data
+        let students_json = json!([
+            {
+                "id": 1,
+                "first_name": "Charlie",
+                "last_name": "Spring",
+                "grade_lvl": 10,
+                "completed_events": []
+            },
+            {
+                "id": 2,
+                "first_name": "Nick",
+                "last_name": "Nelson",
+                "grade_lvl": 10,
+                "completed_events": []
+            },
+            {
+                "id": 3,
+                "first_name": "Elle",
+                "last_name": "Argent",
+                "grade_lvl": 11,
+                "completed_events": []
+            },
+            {
+                "id": 4,
+                "first_name": "Tao",
+                "last_name": "Xu",
+                "grade_lvl": 11,
+                "completed_events": []
+            },
+            {
+                "id": 5,
+                "first_name": "Tara",
+                "last_name": "Jones",
+                "grade_lvl": 12,
+                "completed_events": []
+            },
+            {
+                "id": 6,
+                "first_name": "Darcy",
+                "last_name": "Olsson",
+                "grade_lvl": 12,
+                "completed_events": []
+            },
+            {
+                "id": 7,
+                "first_name": "Issac",
+                "last_name": "Henderson",
+                "grade_lvl": 9,
+                "completed_events": []
+            },
+            {
+                "id": 8,
+                "first_name": "Tori",
+                "last_name": "Spring",
+                "grade_lvl": 9,
+                "completed_events": []
+            }
+        ]).to_string();
+
+        // events data
+        let events_json = json!([
+            {
+                "id": 1,
+                "name": "Basketball tournament",
+                "points": 10
+            },
+            {
+                "id": 2,
+                "name": "Football game",
+                "points": 12
+            },
+            {
+                "id": 3,
+                "name": "Track and Field Meet",
+                "points": 18
+            },
+            {
+                "id": 4,
+                "name": "Volleyball game",
+                "points": 25
+            },
+            {
+                "id": 5,
+                "name": "Swim meet",
+                "points": 5
+            },
+            {
+                "id": 6,
+                "name": "Science fair",
+                "points": 15
+            },
+            {
+                "id": 7,
+                "name": "Art show",
+                "points": 24
+            },
+            {
+                "id": 8,
+                "name": "Debate competition",
+                "points": 18
+            },
+            {
+                "id": 9,
+                "name": "Talent show",
+                "points": 5
+            },
+            {
+                "id": 10,
+                "name": "Math Olympiad",
+                "points": 4
+            }
+        ]).to_string();
+
+        // construct data
+        self.students = serde_json::from_str(&students_json).unwrap();
+        self.events = serde_json::from_str(&events_json).unwrap();
+        self.write_json();
     }
 }

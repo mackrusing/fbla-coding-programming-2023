@@ -159,11 +159,15 @@ fn delete_student_completed_events(
 // /events/id
 //
 
-// #[get("/test")]
-// fn test(state: &AppState<Mutex<State>>) {
-//     let mut state = state.lock().unwrap();
-//     state.get_student_completed_events(1);
-// }
+//
+// /util/reset_test_data
+//
+
+#[get("/util/reset_test_data")]
+fn util_reset_test_data(state: &AppState<Mutex<State>>) {
+    let mut state = state.lock().unwrap();
+    state.util_reset_test_data();
+}
 
 #[launch]
 fn rocket() -> _ {
@@ -187,7 +191,7 @@ fn rocket() -> _ {
             patch_student_completed_events,
             delete_student_completed_events,
 
-            // test endpoints
-            // test // remove before production
+            // /util/reset_test_data
+            util_reset_test_data,
         ])
 }
