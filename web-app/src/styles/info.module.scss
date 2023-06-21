@@ -1,0 +1,74 @@
+$color-fg: #120d11; // black
+$color-fg2: rgba($color-fg, 0.25); // dark grey
+$color-fg3: rgba($color-fg, 0.5); // dark grey
+
+.main {
+  .name {
+    font-size: 2rem;
+    @media (min-width: 625px) {
+      font-size: 2.5rem;
+    }
+
+    .rank {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: $color-fg3;
+      @media (min-width: 625px) {
+        font-size: 1.6rem;
+      }
+    }
+  }
+
+  .info {
+    color: $color-fg3;
+    font-weight: 500;
+    .title {
+      color: $color-fg2;
+      font-weight: 400;
+    }
+    .separator {
+      color: $color-fg2;
+      font-weight: 800;
+    }
+  }
+
+  .completedEvents {
+    margin: 32px 0;
+  }
+
+  .headRow {
+    margin-bottom: 10px;
+    font-style: italic;
+    // font-weight: 500;
+  }
+  .footRow {
+    margin-top: 10px;
+    font-style: italic;
+    .total {
+      font-weight: 400;
+    }
+  }
+  .noneRow {
+    p {
+      // text-align: center;
+    }
+  }
+  .row, .headRow, .footRow {
+    display: flex;
+    gap: 12px;
+
+    p {
+      display: inline;
+    }
+
+    .eventName {
+
+    }
+
+    .eventPoints {
+      font-weight: 600;
+      margin-left: auto;
+    }
+  }
+}
+

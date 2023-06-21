@@ -1,0 +1,118 @@
+//
+// fonts
+//
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
+//
+// Josh's Custom CSS Reset
+// https://www.joshwcomeau.com/css/custom-css-reset/
+//
+// with modifications by Mack Rusing
+//
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  font-size: 100%
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+#root, #__next {
+  isolation: isolate;
+}
+
+//
+// global styles
+//
+
+// colors
+$color-fg: #120d11; // black
+$color-fg2: rgba($color-fg, 0.25); // dark grey
+$color-bg: #f0eaf0; // white
+$color-bg2: #e9e2e9; // light grey
+
+$color-accent1: #8e4cc5; // purple
+
+// font sizes
+$font-size-s:     0rem;
+$font-size-base:  1.4rem;
+$font-size-l:     0rem;
+$font-size-xl:    0rem;
+$font-size-xxl:   0rem;
+
+// font families
+$font-families-header: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+$font-families-body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+$font-families-mono: "IBM Plex Mono", "Menlo", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", Courier, monospace;
+
+body {
+  // text & colors
+  font-family: $font-families-body;
+  text-rendering: optimizeLegibility;
+  font-size: $font-size-base;
+  font-weight: 400;
+  background: $color-bg;
+  color: $color-fg;
+
+  // layout
+  display: grid;
+  grid-template-columns:
+    1fr
+    calc(min(40ch, calc(100% - 64px)))
+    1fr;
+  grid-column-gap: 32px;
+  & > * {
+    grid-column: 2;
+  }
+}
+
+a {
+  &:link, &:visited, &:hover, &:active {
+    color: $color-fg;
+    text-decoration: none;
+    transition: color 300ms;
+  }
+
+  // &:hover {
+  //   color: $color-accent1;
+  // }
+  // &:active {
+  //   color: rgba($color-accent1, 0.5);
+  // }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+main {
+  height: fit-content;
+}

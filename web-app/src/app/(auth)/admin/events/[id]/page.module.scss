@@ -1,0 +1,56 @@
+$color-accent1: #8e4cc5; // purple
+
+.list {
+  margin: 32px 0;
+}
+
+.headRow {
+  margin-bottom: 10px;
+  font-style: italic;
+  // font-weight: 500;
+}
+.footRow {
+  margin-top: 10px;
+  font-style: italic;
+  .total {
+    font-weight: 400;
+  }
+}
+// .noneRow {
+//   p {
+//     // text-align: center;
+//   }
+// }
+
+.row, .headRow, .footRow {
+  display: flex;
+  gap: 12px;
+
+  p {
+    display: inline;
+  }
+
+  .id {
+    width: 4ch;
+    flex-shrink: 0;
+  }
+
+  .name {
+    display: inline;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex-grow: 0;
+  }
+
+  .add {
+    font-weight: 600;
+    margin-left: auto;
+    flex-shrink: 0;
+    color: $color-accent1;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.main {
+  // margin: 32px 0;
+}
+
+.headRow {
+  margin-bottom: 10px;
+  font-style: italic;
+  // font-weight: 500;
+}
+
+.row, .headRow {
+  display: flex;
+  gap: 12px;
+
+  p {
+    display: inline;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex-grow: 0;
+  }
+
+  .rank {
+    width: 3ch;
+    flex-shrink: 0;
+    // text-align: right;
+    font-weight: 600;
+  }
+
+  .name {
+
+  }
+
+  .points {
+    margin-left: auto;
+    flex-shrink: 0;
+    
+  }
+}
