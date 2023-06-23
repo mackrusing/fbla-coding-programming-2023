@@ -1,10 +1,10 @@
 "use client";
 
-import formStyles from "../form.module.scss";
+import formStyles from "./form.module.scss";
 import { addEvent } from "@/lib/api";
 import { useState } from "react";
 
-function AddEventForm() {
+export default function AddEventForm() {
   const [name, setName] = useState("");
   const [points, setPoints] = useState("");
   const [status, setStatus] = useState("start"); // start, loading, success, err
@@ -46,13 +46,5 @@ function AddEventForm() {
       </div>
       <input type="submit" value={submitVal} disabled={!name || !points}/>
     </form>
-  );
-}
-
-export default function AdminAddEventPage() {
-  return (
-    <main>
-      <AddEventForm />
-    </main>
   );
 }

@@ -1,10 +1,10 @@
 "use client";
 
-import formStyles from "../form.module.scss";
+import formStyles from "./form.module.scss";
 import { addStudent } from "@/lib/api";
 import { useState } from "react";
 
-function AddStudentForm() {
+export default function AddStudentForm() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [gradeLvl, setGradeLvl] = useState("");
@@ -65,32 +65,26 @@ function AddStudentForm() {
       </div>
       <div className={formStyles.radioGroup}>
         <label>Grade level</label>
-        <div>
-          <input type="radio" id="9" name="gradeLvl" value="9" onChange={handleGradeLvlChange} checked={gradeLvl === "9"} disabled={status === "loading"} required/>
-          <label htmlFor="9">9</label>
-        </div>
-        <div>
-          <input type="radio" id="10" name="gradeLvl" value="10" onChange={handleGradeLvlChange} checked={gradeLvl === "10"} disabled={status === "loading"} />
-          <label htmlFor="10">10</label>
-        </div>
-        <div>
-          <input type="radio" id="11" name="gradeLvl" value="11" onChange={handleGradeLvlChange} checked={gradeLvl === "11"} disabled={status === "loading"} />
-          <label htmlFor="11">11</label>
-        </div>
-        <div>
-          <input type="radio" id="12" name="gradeLvl" value="12" onChange={handleGradeLvlChange} checked={gradeLvl === "12"} disabled={status === "loading"} />
-          <label htmlFor="12">12</label>
+        <div className={formStyles.btns}>
+          <div>
+            <input type="radio" id="9" name="gradeLvl" value="9" onChange={handleGradeLvlChange} checked={gradeLvl === "9"} disabled={status === "loading"} required/>
+            <label htmlFor="9">9</label>
+          </div>
+          <div>
+            <input type="radio" id="10" name="gradeLvl" value="10" onChange={handleGradeLvlChange} checked={gradeLvl === "10"} disabled={status === "loading"} />
+            <label htmlFor="10">10</label>
+          </div>
+          <div>
+            <input type="radio" id="11" name="gradeLvl" value="11" onChange={handleGradeLvlChange} checked={gradeLvl === "11"} disabled={status === "loading"} />
+            <label htmlFor="11">11</label>
+          </div>
+          <div>
+            <input type="radio" id="12" name="gradeLvl" value="12" onChange={handleGradeLvlChange} checked={gradeLvl === "12"} disabled={status === "loading"} />
+            <label htmlFor="12">12</label>
+          </div>
         </div>
       </div>
       <input type="submit" value={submitVal} disabled={!firstName || !lastName || !gradeLvl}/>
     </form>
-  );
-}
-
-export default function AdminAddStudentPage() {
-  return (
-    <main>
-      <AddStudentForm />
-    </main>
   );
 }

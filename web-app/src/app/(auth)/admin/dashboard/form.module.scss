@@ -13,7 +13,7 @@ $color-accent1: #ad91c5; // purple
   // justify-content: center;
 
   input[type=text], input[type=number] {
-    background: $color-bg2;
+    background: $color-bg;
     padding: 0;
     padding: 5px 10px;
     // border: 2px solid $color-fg2;
@@ -31,32 +31,45 @@ $color-accent1: #ad91c5; // purple
   }
 
   input[type=submit]:disabled {
+    border-radius: 5px;
     background: rgba($color-accent1, 0.5);
   }
 }
 
 .radioGroup {
+  padding: 5px 10px;
   display: flex;
   flex-direction: row;
-  gap: 24px;
+  gap: 0 24px;
   justify-content: center;
+  flex-wrap: wrap;
+  background: $color-bg;
+  border-radius: 5px;
 
-  div {
+  
+  .btns {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 5px;
+    gap: 14px;
+
+    div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 4px;
+    }
   }
 }
 
 .textGroup {
   display: flex;
   flex-direction: row;
-  gap: 4px;
+  gap: 6px;
   flex-wrap: wrap;
 
   input {
-    flex-basis: 10ch;
+    flex-basis: 12ch;
     flex-shrink: 1;
     flex-grow: 1;
     min-width: 0px;

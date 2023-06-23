@@ -1,7 +1,8 @@
 $color-accent1: #8e4cc5; // purple
 
 .list {
-  margin: 32px 0;
+  // margin: 32px 0;
+  padding: 8px;
 }
 
 .headRow {
@@ -16,11 +17,6 @@ $color-accent1: #8e4cc5; // purple
     font-weight: 400;
   }
 }
-// .noneRow {
-//   p {
-//     // text-align: center;
-//   }
-// }
 
 .row, .headRow, .footRow {
   display: flex;
@@ -43,19 +39,10 @@ $color-accent1: #8e4cc5; // purple
     flex-grow: 0;
   }
 
-  .add {
+  .points {
     font-weight: 600;
     margin-left: auto;
     flex-shrink: 0;
-    color: $color-accent1;
-
-    &:hover {
-      cursor: pointer;
-    }
+    // color: $color-accent1;
   }
-}
-
-.subheading {
-  margin-top: 32px;
-  font-weight: 600;
 }

@@ -56,6 +56,7 @@ export default async function AdminEventPage({ params }: { params: { id: string 
       <p className={infoStyles.info}><span className={infoStyles.title}>id</span> {event.id} <span className={styles.separator}>&#183;</span> <span className={infoStyles.title}>pts</span> {event.points}</p>
 
       {/* form */}
+      <h2 className={styles.subheading}>Log Attendance</h2>
       <div className={styles.list}>
         <div className={styles.headRow}>
           <p className={styles.id}>id</p>
