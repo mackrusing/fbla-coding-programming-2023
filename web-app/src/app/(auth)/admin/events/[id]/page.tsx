@@ -16,7 +16,7 @@ export default async function AdminEventPage({ params }: { params: { id: string 
     notFound();
   }
 
-  async function handleLog(e, id: string) {
+  async function handleLog(e: any, id: string) {
     console.log(id);
     const res = await logEvent(params.id, id);
     console.log(res);
@@ -42,7 +42,7 @@ export default async function AdminEventPage({ params }: { params: { id: string 
       <div key={student.id} className={styles.row}>
         <p className={styles.id}>{student.id}</p>
         <p className={styles.name}>{student.firstName + " " + student.lastName}</p>
-        <p className={styles.add} onClick={async (e) => await handleLog(e, student.id)}>+</p>
+        <p className={styles.add} onClick={async (e) => await handleLog(e, `${student.id}`)}>+</p>
       </div>
     );
   });

@@ -73,7 +73,7 @@ export async function addStudent(firstName: string, lastName: string, gradeLvl: 
 
   const settings = {
     method: "POST",
-    cache: "no-cache",
+    // cache: "no-cache",
     headers: {
       Authorization: "Basic YWRtaW46cGFzcw=="
     }
@@ -92,7 +92,7 @@ export async function addEvent(name: string, points: string) {
 
   const settings = {
     method: "POST",
-    cache: "no-cache",
+    // cache: "no-cache",
     headers: {
       Authorization: "Basic YWRtaW46cGFzcw=="
     }
@@ -111,7 +111,7 @@ export async function logEvent(eventId: string, studentId: string) {
 
   const settings = {
     method: "POST",
-    cache: "no-cache",
+    // cache: "no-cache",
     headers: {
       Authorization: "Basic YWRtaW46cGFzcw=="
     }

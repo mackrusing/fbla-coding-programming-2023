@@ -1,6 +1,6 @@
-import AddEventForm from "./add-event.tsx";
-import AddStudentForm from "./add-student.tsx";
-import EventsList from "./events-list.tsx";
+import AddEventForm from "./add-event";
+import AddStudentForm from "./add-student";
+import EventsList from "./events-list";
 import styles from "./page.module.scss";
 
 export default function AdminDashboard() {

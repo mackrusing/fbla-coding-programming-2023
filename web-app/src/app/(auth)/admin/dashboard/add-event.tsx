@@ -10,7 +10,7 @@ export default function AddEventForm() {
   const [status, setStatus] = useState("start"); // start, loading, success, err
   const [submitVal, setSumbitVal] = useState("Submit");
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: any) {
     e.preventDefault(); // prevent reload
     setStatus("loading");
     setSumbitVal("Loading...");
@@ -28,12 +28,12 @@ export default function AddEventForm() {
     console.log(res);
   }
 
-  function handleNameChange(e) {
+  function handleNameChange(e: any) {
     setSumbitVal("Submit");
     setName(e.target.value);
   }
 
-  function handlePointsChange(e) {
+  function handlePointsChange(e: any) {
     setSumbitVal("Submit");
     setPoints(e.target.value);
   }

@@ -11,7 +11,7 @@ export default function AddStudentForm() {
   const [status, setStatus] = useState("start"); // start, loading, success, err
   const [submitVal, setSumbitVal] = useState("Submit");
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: any) {
     e.preventDefault(); // prevent reload
     setStatus("loading");
     setSumbitVal("Loading...");
@@ -30,17 +30,17 @@ export default function AddStudentForm() {
     console.log(res);
   }
 
-  function handleFirstNameChange(e) {
+  function handleFirstNameChange(e: any) {
     setSumbitVal("Submit");
     setFirstName(e.target.value);
   }
 
-  function handleLastNameChange(e) {
+  function handleLastNameChange(e: any) {
     setSumbitVal("Submit");
     setLastName(e.target.value);
   }
 
-  function handleGradeLvlChange(e) {
+  function handleGradeLvlChange(e: any) {
     setSumbitVal("Submit");
     setGradeLvl(e.target.value);
   }

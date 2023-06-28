@@ -18,7 +18,7 @@ export default async function StudentPage({ params }: { params: { id: string } }
   });
 
   if (events.length === 0) {
-    events = (
+    events.push(
       <div className={styles.noneRow}>
         <p>attend events to earn points</p>
       </div>

@@ -1,34 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Activity Tracker
 
-## Getting Started
+![language: TypeScript](https://img.shields.io/badge/language-TypeScript-3178c5)
+![language: Sass](https://img.shields.io/badge/language-Sass-ce649a)
+![library: React](https://img.shields.io/badge/library-React-149eca)
+![framework: Next](https://img.shields.io/badge/framework-Next-black)
+![framework: Express](https://img.shields.io/badge/framework-Express-white)
 
-First, run the development server:
+The repo contains two, separatly-run components: the [API](#api) (data handling) and the [web app](#web-app) (ui).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+<!-- project overview here -->
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The API consists of all the logic for creating, reading, updating, and deleting
+application data. It handles the validation, reading, and writing of student and
+event data stored in json files.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+> demo avalible on https://api.activity-tracker.mackk.dev/
 
-## Learn More
+### Endpoints
 
-To learn more about Next.js, take a look at the following resources:
+Below is an overview of the avalible API endpoints. All `POST`, `PUT`, `PATCH`, and `DELETE` all require authentication, more info on that [below](#authentication).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+|                                          | GET | POST | PUT | PATCH | DELETE |
+| ---------------------------------------- | --- | ---- | --- | ----- | ------ |
+| `/students.json`                         | ✓   | ✓    | ✗   | ✗     | ✗      |
+| `/students/[id].json`                  | ✓   | ✗    | ✓   | ✓     | ✓      |
+| `/students/[id]/completed_events.json` | ✗   | ✓    | ✗   | ✓     | ✗      |
+| `/events.json`                           | ✓   | ✓    | ✗   | ✗     | ✗      |
+| `/events/[id].json`                    | ✓   | ✗    | ✓   | ✓     | ✓      |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<!-- For a complete overview of the API's functionality and a list of it's endpoints, check the [API Docs](./docs/index.md). -->
 
-## Deploy on Vercel
+### Authentication
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Authenticated actions (all `POST`, `PUT`, `PATCH`, and `DELETE` requests) require the user provide credentials using the Basic Auth scheme in the Authentication header.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+For example a `POST` request to `/students.json` will always return a an error without providing the Authentication header.
+
+<!-- add example with curl ? -->
+
+## Web App
+
+The Web application gives administrators and students an easy way to track participation in school events. The application consists of an "admin" site (`/admin/dashboard`) containting forms for adding students, creating events, and logging completed activities, and a "public" site (`/leaderboard`) which contains a leaderboard-like inteface.
+
+> demo avalible on https://activity-tracker.mackk.dev/
+
+### Site map
+
+- `/leaderboard`: student leaderboard
+- `/students/[id]`: info about a single student's rank, point accumulation, and completed events
+- `/admin/dashboard`: a dashboard for administrators to add students create events and open event pages
+- `/admin/events/[id]`: page for admins to log students as they complete events
